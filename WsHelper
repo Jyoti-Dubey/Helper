@@ -39,9 +39,27 @@ private void callWS() {
             mRequestQueue = Volley.newRequestQueue(context);
             RetryPolicy policy = new DefaultRetryPolicy(15000 /*SECONDS*/, 1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
             stringRequest.setRetryPolicy(policy);
-            
-            
-   ---------------------------------------------------------smallest and largest from array----------------------         
+           
+            mRequestQueue.add(stringRequest);
+        } else {
+            Toast.makeText(context, "No internet connection", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    /**
+     * this method will check internet connection is available or not
+     *
+     * @param context
+     * @return
+     ***/
+    public static boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }//end of isNetworkAvailable
+
+ ---------------------------------------------------------smallest and largest from array----------------------         
    public class FindLargestSmallestNumber {
  
 	public static void main(String[] args) {
@@ -66,21 +84,53 @@ private void callWS() {
 		System.out.println("Smallest Number is : " + smallest);
 	}
 }
-            mRequestQueue.add(stringRequest);
-        } else {
-            Toast.makeText(context, "No internet connection", Toast.LENGTH_SHORT).show();
-        }
 
-    }
 
-    /**
-     * this method will check internet connection is available or not
-     *
-     * @param context
-     * @return
-     ***/
-    public static boolean isNetworkAvailable(Context context) {
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-    }//end of isNetworkAvailable
+-----------------------------------factorial---------------------------------------------------
+public class NumberFactorial {
+ 
+	public static void main(String[] args) {
+		
+		int number = 5;
+		
+		/*
+		 * Factorial of any number is !n. 
+		 * For example, factorial of 4 is 4*3*2*1.
+		*/
+		
+		int factorial = number;
+		
+		for(int i =(number - 1); i > 1; i--)
+		{
+			factorial = factorial * i;
+		}
+	
+		System.out.println("Factorial of a number is " + factorial);
+	}
+}
+
+--------------------------------------------------------Reverse number---------------------------------------
+public class ReverseNumber {
+ 
+	public static void main(String[] args) {
+		
+		//original number
+		int number = 1234;
+		int reversedNumber = 0;
+		int temp = 0;
+		
+		while(number > 0){
+			
+			//use modulus operator to strip off the last digit
+			temp = number%10;
+			
+			//create the reversed number
+			reversedNumber = reversedNumber * 10 + temp;
+			number = number/10;
+			 
+		}
+		
+		//output the reversed number
+		System.out.println("Reversed Number is: " + reversedNumber);
+	}
+}
